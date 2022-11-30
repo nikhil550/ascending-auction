@@ -41,6 +41,7 @@ async function main() {
                   let auctionResult = await contract.evaluateTransaction('QueryAuction', AuctionID);
                   let auctionJSON = JSON.parse(auctionResult);
                   var item = auctionJSON[0].item;
+
                   // update the current auction
                   for (let round = 0; round < auctionJSON.length; ++round) {
 
@@ -77,7 +78,7 @@ async function main() {
 
                           console.log(`*** Submitting bid for ${bids[i].bid.quantity} ${item} for round ${round}`);
 
-                          // submit the bid auction
+                          // submit the bid to the auction
                           async function bid() {
                             try {
 
@@ -101,6 +102,7 @@ async function main() {
                           await bid();
                         };
                       };
+
                       // query asks on the item from your org
                       result = await contract.evaluateTransaction('QueryAsks', item);
                       let asks = JSON.parse(result);
@@ -108,7 +110,8 @@ async function main() {
                         if (parseInt(auction[round].price) >= parseInt(asks[i].ask.price) && (parseInt(auction[round - 1].price) < parseInt(asks[i].ask.price))) {
 
                           console.log(`*** Submitting ask for ${asks[i].ask.quantity} ${item} for round ${round}`);
-                          // submit the ask auction
+
+                          // submit the ask to the auction
                           async function ask() {
                             try {
 
@@ -251,7 +254,6 @@ async function main() {
 
       await contract.addContractListener(auctionListener);
       console.log(`<-- added auction listener`);
-
 
     } catch (eventError) {
       console.log(`<-- Failed: Setup event - ${eventError}`);

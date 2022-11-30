@@ -14,7 +14,6 @@ const chaincodeName = 'auction';
 
 const mvccText = /MVCC_READ_CONFLICT/
 
-
 async function main() {
   try {
 

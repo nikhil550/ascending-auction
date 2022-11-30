@@ -90,7 +90,7 @@ async function main() {
     process.exit(1);
   }
 
-  // submit bids for the
+  // submit bids for the bidders of both organizations
   try {
 
     console.log('\n--> submitting bids and asks from Org1');

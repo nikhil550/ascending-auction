@@ -328,7 +328,7 @@ func (s *SmartContract) EndAuction(ctx contractapi.TransactionContextInterface, 
 	return nil
 }
 
-//activeAuctionChecks completes a series of checks to see if the auction is still active before
+// activeAuctionChecks completes a series of checks to see if the auction is still active before
 // closing a round.
 func (s *SmartContract) activeAuctionChecks(ctx contractapi.TransactionContextInterface, auction *AuctionRound) error {
 
@@ -348,8 +348,7 @@ func (s *SmartContract) activeAuctionChecks(ctx contractapi.TransactionContextIn
 }
 
 // allocateSold allocates excess demand to sellers when new rounds are created
-// or a round is sold
-
+// or when the round is sold.
 func (s *SmartContract) allocateSold(ctx contractapi.TransactionContextInterface, auction *AuctionRound) (*AuctionRound, error) {
 
 	sellers := make(map[string]Seller)
